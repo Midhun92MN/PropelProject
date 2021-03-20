@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.faith.entity.CourseEnquiry;
 
+@Repository
 public interface ICourseEnquiryRepo extends CrudRepository<CourseEnquiry, Integer>{
 	
 	@Query("from CourseEnquiry where enqDate between ?1 and ?2")
