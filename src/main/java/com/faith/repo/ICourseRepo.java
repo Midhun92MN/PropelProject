@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.faith.entity.Course;
 
+@Repository
 public interface ICourseRepo extends CrudRepository<Course, Integer> {
 	
 	@Query("from Course where courseName like %?1%")

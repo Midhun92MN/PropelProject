@@ -2,12 +2,13 @@ package com.faith.repo;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.faith.entity.User;
-
+@Repository
 public interface IUserRepo extends JpaRepositoryImplementation<User, Integer> {
 	
 	@Query("from User where userName=?1 and password=?2")
