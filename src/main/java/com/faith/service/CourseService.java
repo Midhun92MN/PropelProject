@@ -41,21 +41,23 @@ public class CourseService implements ICourseService {
 
 	@Transactional
 	@Override
-	public void insertCourse(Course course) {
-		courseRepo.save(course);
+	public Course insertCourse(Course course) {
+		return courseRepo.save(course);
 	}
 
 	@Transactional
 	@Override
-	public void updateCourse(Course course) {
-		courseRepo.save(course);
+	public Course updateCourse(Course course) {
+		return courseRepo.save(course);
 	}
 
+	@Transactional
 	@Override
 	public void disableCourseById(int courseId) {
 		courseRepo.disableById(courseId);
 	}
 
+	@Transactional
 	@Override
 	public void enableCourseById(int courseId) {
 		courseRepo.enableById(courseId);

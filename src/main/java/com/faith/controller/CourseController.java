@@ -23,48 +23,59 @@ import com.faith.service.ICourseService;
 @RestController
 @RequestMapping("api")
 public class CourseController {
-	
+
 	@Autowired
 	ICourseService courseService;
-	
-	
+
 	@GetMapping("courses")
-	public List<Course> findAllCourses(){
+	public List<Course> findAllCourses() {
 		return courseService.findAllCourses();
 	}
-	
+
 	@GetMapping("modules")
-	public List<Module> findAllModules(){
+	public List<Module> findAllModules() {
 		return courseService.findAllModules();
 	}
-	
+
 	@GetMapping("quals")
-	public List<Qual> findAllQuals(){
+	public List<Qual> findAllQuals() {
 		return courseService.findAllQuals();
 	}
-	
+
 	@GetMapping("courses/name/{courseName}")
-	public List<Course> findCourseByName(@PathVariable String courseName){
+	public List<Course> findCourseByName(@PathVariable String courseName) {
 		return courseService.findCourseByName(courseName);
 	}
-	
+
 	@GetMapping("courses/{courseId}")
-	public Optional<Course> findCourseById(@PathVariable int courseId){
+	public Optional<Course> findCourseById(@PathVariable int courseId) {
 		return courseService.findCourseById(courseId);
 	}
-	
+
 	@PostMapping("courses")
-	public void insertCourse(@RequestBody Course course) {
-		courseService.insertCourse(course);
+	public Course insertCourse(@RequestBody Course course) {
+		return courseService.insertCourse(course);
 	}
-	
+
 	@PutMapping("courses")
-	public void updateCourse(@RequestBody Course course) {
-		courseService.updateCourse(course);
+	public Course updateCourse(@RequestBody Course course) {
+		return courseService.updateCourse(course);
 	}
 	
+	@PutMapping("courses/disable/{courseId}")
+	public Course disableCourse(@PathVariable int courseId,@RequestBody Course course)
+	{
+		System.out.println("disabling course"+course.getCourseId());
+		courseService.disableCourseById(courseId);
+		return course;
+	}
 	
-	
-	
+	@PutMapping("courses/enable/{courseId}")
+	public Course enableCourse(@PathVariable int courseId,@RequestBody Course course)
+	{
+		System.out.println("enabling course"+course.getCourseId());
+		courseService.enableCourseById(courseId);
+		return course;
+	}
 
 }

@@ -36,7 +36,7 @@ public class CourseEnquiry {
 	@JoinColumn
 	private Status status;
 
-	@ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE})
+	@ManyToMany
 	private List<Course> enquiredCourses;
 
 	public CourseEnquiry() {

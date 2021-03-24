@@ -15,9 +15,9 @@ public interface ICourseService {
 
 	List<Module> findAllModules();
 
-	void insertCourse(Course course);
+	Course insertCourse(Course course);
 
-	void updateCourse(Course course);
+	Course updateCourse(Course course);
 
 	void disableCourseById(int courseId);
 
