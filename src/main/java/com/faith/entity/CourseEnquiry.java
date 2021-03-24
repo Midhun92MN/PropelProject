@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -34,15 +35,26 @@ public class CourseEnquiry {
 	@ManyToOne
 	@JoinColumn
 	private Status status;
-	
-	@ManyToMany(mappedBy = "courseEnquiries")
+
+	@ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE})
 	private List<Course> enquiredCourses;
 
 	public CourseEnquiry() {
 		super();
 	}
 
-	
+	public CourseEnquiry(int enquiryId, String name, LocalDate dob, String email, String highestQual, LocalDate enqDate,
+			Status status, List<Course> enquiredCourses) {
+		super();
+		this.enquiryId = enquiryId;
+		this.name = name;
+		this.dob = dob;
+		this.email = email;
+		this.highestQual = highestQual;
+		this.enqDate = enqDate;
+		this.status = status;
+		this.enquiredCourses = enquiredCourses;
+	}
 
 	public int getEnquiryId() {
 		return enquiryId;
@@ -92,7 +104,6 @@ public class CourseEnquiry {
 		this.enqDate = enqDate;
 	}
 
-	@JsonManagedReference
 	public Status getStatus() {
 		return status;
 	}
@@ -101,28 +112,9 @@ public class CourseEnquiry {
 		this.status = status;
 	}
 
-
-
-	public CourseEnquiry(int enquiryId, String name, LocalDate dob, String email, String highestQual, LocalDate enqDate,
-			Status status, List<Course> enquiredCourses) {
-		super();
-		this.enquiryId = enquiryId;
-		this.name = name;
-		this.dob = dob;
-		this.email = email;
-		this.highestQual = highestQual;
-		this.enqDate = enqDate;
-		this.status = status;
-		this.enquiredCourses = enquiredCourses;
-	}
-
-
-
 	public List<Course> getEnquiredCourses() {
 		return enquiredCourses;
 	}
-
-
 
 	public void setEnquiredCourses(List<Course> enquiredCourses) {
 		this.enquiredCourses = enquiredCourses;

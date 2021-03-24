@@ -13,8 +13,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "courseId")
@@ -37,12 +39,26 @@ public class Course {
 	private List<Qual> quals;
 
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(mappedBy = "enquiredCourses")
 	private List<CourseEnquiry> courseEnquiries;
 
 	public Course() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Course(int courseId, String courseName, String description, int durationDays, double fees, boolean isActive,
+			List<Module> modules, List<Qual> quals, List<CourseEnquiry> courseEnquiries) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.description = description;
+		this.durationDays = durationDays;
+		this.fees = fees;
+		this.isActive = isActive;
+		this.modules = modules;
+		this.quals = quals;
+		this.courseEnquiries = courseEnquiries;
 	}
 
 	public int getCourseId() {
@@ -107,6 +123,14 @@ public class Course {
 
 	public void setQuals(List<Qual> quals) {
 		this.quals = quals;
+	}
+
+	public List<CourseEnquiry> getCourseEnquiries() {
+		return courseEnquiries;
+	}
+
+	public void setCourseEnquiries(List<CourseEnquiry> courseEnquiries) {
+		this.courseEnquiries = courseEnquiries;
 	}
 
 }

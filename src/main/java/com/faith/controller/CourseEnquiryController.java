@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,12 +38,13 @@ public class CourseEnquiryController {
 	}
 
 	@PostMapping("course-enquiries")
-	public CourseEnquiry insertCourseEnquiries(CourseEnquiry courseEnquiry) {
+	public CourseEnquiry insertCourseEnquiries(@RequestBody CourseEnquiry courseEnquiry) {
+		System.out.println("inside post");
 		return courseEnquiryService.insertCourseEnquiry(courseEnquiry);
 	}
 	
 	@PutMapping("course-enquiries")
-	public CourseEnquiry updateCourseEnquiries(CourseEnquiry courseEnquiry) {
+	public CourseEnquiry updateCourseEnquiries(@RequestBody CourseEnquiry courseEnquiry) {
 		return courseEnquiryService.updateCourseEnquiry(courseEnquiry);
 	}
 

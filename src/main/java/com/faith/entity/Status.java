@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -24,6 +25,7 @@ public class Status {
 	private String statusName;
 
 	@OneToMany(mappedBy = "status")
+	@JsonIgnore
 	List<CourseEnquiry> courseEnquiries;
 
 	public Status() {
@@ -54,7 +56,6 @@ public class Status {
 		this.statusName = statusName;
 	}
 
-	@JsonBackReference
 	public List<CourseEnquiry> getCourseEnquiries() {
 		return courseEnquiries;
 	}
