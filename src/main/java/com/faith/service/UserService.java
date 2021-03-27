@@ -49,6 +49,7 @@ public class UserService implements IUserService {
 		userRepo.disableById(userId);
 	}
 
+	@Transactional
 	@Override
 	public void enableUserById(int userId) {
 		userRepo.enableById(userId);
@@ -61,6 +62,7 @@ public class UserService implements IUserService {
 
 	}
 	
+	@Override
 	public Optional<User> findUserById(int userId) {
 		return userRepo.findById(userId);
 	}

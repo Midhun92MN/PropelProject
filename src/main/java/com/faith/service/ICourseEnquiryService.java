@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.faith.entity.CourseEnquiry;
 import com.faith.entity.Status;
+import com.faith.entity.StatusCount;
 
 public interface ICourseEnquiryService {
 
@@ -24,5 +25,9 @@ public interface ICourseEnquiryService {
 	List<CourseEnquiry> filterByStatus(int statusId);
 
 	List<CourseEnquiry> filterByDate(LocalDate startDate, LocalDate endDate);
+	
+	List<StatusCount> getStatusCount();
+	
+	List<StatusCount> getStatusCountBetweenDates(LocalDate startDate,LocalDate endDate);
 
 }

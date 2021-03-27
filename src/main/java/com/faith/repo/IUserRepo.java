@@ -2,7 +2,7 @@ package com.faith.repo;
 
 import java.util.List;
 
-
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
@@ -17,9 +17,11 @@ public interface IUserRepo extends JpaRepositoryImplementation<User, Integer> {
 	@Query("from User where fullName like %?1%")
 	public List<User> findByName(String userName);
 	
-	@Query("update User set isActive=false where userId=?1")
+	@Modifying
+	@Query("update User u set u.isActive=false where u.userId=?1")
 	public void disableById(int userId);
 	
-	@Query("update User set isActive=true where userId=?1")
+	@Modifying
+	@Query("update User u set u.isActive=true where u.userId=?1")
 	public void enableById(int userId);
 }

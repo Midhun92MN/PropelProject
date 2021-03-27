@@ -24,61 +24,58 @@ import com.faith.service.IUserService;
 @RestController
 @RequestMapping("api")
 public class UserController {
-	
+
 	@Autowired
 	IUserService userService;
-	
-	
+
 	@GetMapping("users")
-	public List<User> findAllUsers(){
+	public List<User> findAllUsers() {
 		return userService.findAllUsers();
 	}
-	
+
 	@GetMapping("roles")
-	public List<Role> findAllRoles(){
+	public List<Role> findAllRoles() {
 		return userService.findAllRoles();
 	}
-	
+
 	@GetMapping("users/{userId}")
-	public Optional<User> findUserById(@PathVariable int userId){
+	public Optional<User> findUserById(@PathVariable int userId) {
 		return userService.findUserById(userId);
 	}
-	
+
 	@GetMapping("users/name/{fullName}")
 	public List<User> findUserByName(@PathVariable String fullName) {
 		return userService.findUserByName(fullName);
 	}
-	
+
 	@GetMapping("user-login/{userName}&{password}")
 //	@GetMapping("users/{userName}")
-	public User findUserByNameAndPassword(@PathVariable String userName,@PathVariable String password) {
+	public User findUserByNameAndPassword(@PathVariable String userName, @PathVariable String password) {
 		System.out.println("inside controller");
-		return userService.findUserByNameAndPassword(userName,password);
+		return userService.findUserByNameAndPassword(userName, password);
 	}
-	
-//	@PostMapping("users")
-//	public User insertUser(@RequestBody User user){
-//		user.setUserId(0);
-//		System.out.println("inserting");
-//		userService.insertUser(user);
-//		return user;
-//	}
-	
 
 	@PostMapping("users")
-	public ResponseEntity<User> insertUser(@RequestBody User user){
-		user.setUserId(0);
+	public ResponseEntity<User> insertUser(@RequestBody User user) {
 		System.out.println("inserting");
-		
-		return new ResponseEntity<User>(userService.insertUser(user),HttpStatus.OK);
+
+		return new ResponseEntity<User>(userService.insertUser(user), HttpStatus.OK);
 	}
-	
+
 	@PutMapping("users")
-	public User updateUser(@RequestBody User user){
+	public User updateUser(@RequestBody User user) {
 		userService.updateUser(user);
 		return user;
 	}
 
+	@GetMapping("users/enable/{userId}")
+	public void enableUserById(@PathVariable int userId) {
+		userService.enableUserById(userId);
+	}
+
+	@GetMapping("users/disable/{userId}")
+	public void disableUserById(@PathVariable int userId) {
+		userService.disableUserById(userId);
+	}
 
 }
-

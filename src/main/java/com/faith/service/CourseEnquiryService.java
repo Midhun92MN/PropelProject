@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.faith.entity.CourseEnquiry;
 import com.faith.entity.Status;
+import com.faith.entity.StatusCount;
 import com.faith.repo.ICourseEnquiryRepo;
 import com.faith.repo.IStatusRepo;
 
@@ -61,6 +62,16 @@ public class CourseEnquiryService implements ICourseEnquiryService {
 	@Override
 	public List<CourseEnquiry> filterByDate(LocalDate startDate, LocalDate endDate) {
 		return courseEnquiryRepo.filterByDate(startDate, endDate);
+	}
+	
+	@Override
+	public List<StatusCount> getStatusCount(){
+		return courseEnquiryRepo.getStatusCount();
+	}
+	
+	@Override
+	public List<StatusCount> getStatusCountBetweenDates(LocalDate startDate,LocalDate endDate){
+		return courseEnquiryRepo.getStatusCountBetweenDates(startDate,endDate);
 	}
 
 }

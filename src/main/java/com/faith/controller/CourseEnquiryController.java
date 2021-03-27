@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.faith.entity.CourseEnquiry;
 import com.faith.entity.Status;
+import com.faith.entity.StatusCount;
 import com.faith.service.ICourseEnquiryService;
 
 @CrossOrigin
@@ -42,7 +43,7 @@ public class CourseEnquiryController {
 		System.out.println("inside post");
 		return courseEnquiryService.insertCourseEnquiry(courseEnquiry);
 	}
-	
+
 	@PutMapping("course-enquiries")
 	public CourseEnquiry updateCourseEnquiries(@RequestBody CourseEnquiry courseEnquiry) {
 		return courseEnquiryService.updateCourseEnquiry(courseEnquiry);
@@ -68,6 +69,18 @@ public class CourseEnquiryController {
 			@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
 			@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate) {
 		return courseEnquiryService.filterByDate(startDate, endDate);
+	}
+
+	@GetMapping("status/count")
+	List<StatusCount> getStatusCount() {
+		return courseEnquiryService.getStatusCount();
+	}
+
+	@GetMapping("status/count/date/{startDate}&{endDate}")
+	List<StatusCount> getStatusCountBetweenDates(
+			@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+			@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate) {
+		return courseEnquiryService.getStatusCountBetweenDates(startDate, endDate);
 	}
 
 }
