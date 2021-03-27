@@ -10,6 +10,8 @@ import com.faith.entity.Qual;
 public interface ICourseService {
 
 	List<Course> findAllCourses();
+	
+	List<Course> findAllActiveCourses();
 
 	List<Qual> findAllQuals();
 

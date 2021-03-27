@@ -22,4 +22,8 @@ public interface ICourseRepo extends CrudRepository<Course, Integer> {
 	@Modifying
 	@Query("update Course c set c.isActive=true where c.courseId=:courseId")
 	public void enableById(int courseId);
+
+	
+	@Query("from Course where isActive=true")
+	public List<Course> findAllActiveCourses();
 }

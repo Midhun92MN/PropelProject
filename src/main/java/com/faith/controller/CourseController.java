@@ -31,6 +31,13 @@ public class CourseController {
 	public List<Course> findAllCourses() {
 		return courseService.findAllCourses();
 	}
+	
+	@GetMapping("courses/active")
+	public List<Course> findAllActiveCourses() {
+		return courseService.findAllActiveCourses();
+	}
+	
+	
 
 	@GetMapping("modules")
 	public List<Module> findAllModules() {

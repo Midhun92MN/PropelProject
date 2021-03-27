@@ -28,6 +28,11 @@ public class CourseService implements ICourseService {
 	public List<Course> findAllCourses() {
 		return (List<Course>) courseRepo.findAll();
 	}
+	
+	@Override
+	public List<Course> findAllActiveCourses(){
+		return courseRepo.findAllActiveCourses();
+	}
 
 	@Override
 	public List<Qual> findAllQuals() {
