@@ -11,7 +11,7 @@ import com.faith.entity.User;
 @Repository
 public interface IUserRepo extends JpaRepositoryImplementation<User, Integer> {
 	
-	@Query("from User where userName=?1 and password=?2")
+	@Query("from User where userName=?1 and password=?2 and isActive=true")
 	public User findByUsernameAndPassword(String fullname, String password);
 	
 	@Query("from User where fullName like %?1%")

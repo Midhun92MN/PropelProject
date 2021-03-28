@@ -61,14 +61,19 @@ public class UserService implements IUserService {
 		return userRepo.findByName(fullName);
 
 	}
-	
+
 	@Override
 	public Optional<User> findUserById(int userId) {
 		return userRepo.findById(userId);
 	}
-	
+
 	@Override
-	public User findUserByNameAndPassword(String userName,String password){
-		return userRepo.findByUsernameAndPassword(userName, password);
+	public User findUserByNameAndPassword(String userName, String password) {
+		User user = userRepo.findByUsernameAndPassword(userName, password);
+		if (userName.equals(user.getUserName()) && password.equals(user.getPassword())) {
+			return user;
+		} else {
+			return null;
+		}
 	}
 }
